@@ -49,7 +49,7 @@ let uuids = [
 ];
 let classifications = {};
 
-const sheetEndpoint = "https://script.google.com/macros/s/AKfycbx-bdRmz-7Rz6HhG-2cnkUmgYDvQ2gZqR_BR7YV5UYmOm43jA-7fBRbOZSI2RzhlOCwTg/exec";
+const sheetEndpoint = "https://script.google.com/macros/s/AKfycbwXf18LosPpJL3W4VzTVJeUyNh398Ge9cJXDPFJW2x-fJ8SC2M21vjgM9MYkiOtI3_Pog/exec";
 
 document.addEventListener('DOMContentLoaded', async () => {
     uuid = new URLSearchParams(window.location.search).get("uuid");
@@ -210,6 +210,7 @@ function downloadClassifications() {
 }
 
 function submitClassificationsToGoogleSheet() {
+    if (!confirm("Please only submit your work once you're done with your batch. Everything is saved on your computer in the meantime. Do you want to submit your work now?")) return false;
     const entries = filteredReferences.map(ref => {
         const entry = classifications[ref.id] || {};
         return {
